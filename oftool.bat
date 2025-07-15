@@ -1,16 +1,24 @@
+chcp 65001 >nul
 @echo off
 color 0A
 title ToMsPro CMD - Anti Kendor
-echo ================================
-echo        ToMsPro CMD
-echo ================================
+
+:awal
+cls
+echo ╔═══════════════════════════════════════╗
+echo ║        ToMsPro Toolkit v1.0           ║
+echo ║       CMD Edition - Anti Kendor       ║
+echo ╚═══════════════════════════════════════╝
 
 :menu_utama
+color 0A
 echo.
-echo Pilih opsi utama:
-echo 1. Cek Jaringan (Ping/Tracert)
-echo 2. Tools Anti Kendor (Flush DNS / Sikat Cache)
-echo 3. Aktivasi via PowerShell
+echo ╔═══════════════════════════════════════╗
+echo ║           MENU UTAMA                  ║
+echo ╚═══════════════════════════════════════╝
+echo 1. Cek Jaringan (Ping / Tracert)
+echo 2. Tools Anti Kendor (Flush DNS / Cache)
+echo 3. Aktivasi Office
 echo 4. Keluar
 echo.
 set /p main_choice=Masukkan pilihan Anda (1-4): 
@@ -22,11 +30,11 @@ if %main_choice%==4 goto keluar
 goto menu_utama
 
 :cek_jaringan
-echo.
+cls
+color 0B
 echo ================================
 echo      MENU CEK JARINGAN
 echo ================================
-echo Pilih opsi cek jaringan:
 echo 1. Ping
 echo 2. Tracert
 echo 3. Kembali ke menu utama
@@ -39,27 +47,30 @@ if %choice%==3 goto menu_utama
 goto cek_jaringan
 
 :ping
+cls
 echo.
-set /p target=Masukkan alamat IP atau nama domain untuk ping: 
+set /p target=Masukkan alamat IP atau domain untuk ping: 
 ping %target%
 pause
 goto cek_jaringan
 
 :tracert
+cls
 echo.
-set /p target=Masukkan alamat IP atau nama domain untuk tracert: 
+set /p target=Masukkan alamat IP atau domain untuk tracert: 
 tracert %target%
 pause
 goto cek_jaringan
 
 :anti_kendor
-echo.
+cls
+color 0E
 echo ================================
 echo       TOOLS ANTI KENDOR
 echo ================================
-echo [1] Flush DNS              
-echo [2] Sikat File Cache + Hapus Chrome Data   
-echo [3] Kembali ke menu utama
+echo 1. Flush DNS              
+echo 2. Sikat File Cache + Hapus Chrome Data   
+echo 3. Kembali ke menu utama
 echo.
 set /p pil=Masukkan pilihan (1-3): 
 
@@ -70,7 +81,8 @@ goto anti_kendor
 
 :DNS
 cls
-Echo Menjalankan Flush DNS...
+color 0C
+echo Menjalankan Flush DNS...
 echo =======================================================
 netsh winsock reset
 netsh int ip reset
@@ -85,7 +97,8 @@ goto anti_kendor
 
 :Sikat
 cls
-Echo Menjalankan Cleaner...
+color 0D
+echo Menjalankan Cleaner...
 echo =======================================================
 taskkill /f /im chrome.exe
 taskkill /f /im VpnSvc.exe
@@ -108,21 +121,27 @@ rd /s /q %windir%\temp & md %windir%\temp
 rd /s /q %USERPROFILE%\AppData\Local\Google\Chrome
 del /f /s /q %windir%\*.bak  
 del /f /s /q %windir%\prefetch\*.* 
+echo =======================================================
 echo Done! Semoga WEEEDEEE ^^
 echo Jalankan CCleaner Biar makin Bersih
-echo =======================================================
 pause
 goto anti_kendor
 
 :panggil_powershell
+cls
+color 0F
+echo Membuka PowerShell dan menjalankan aktivator Office...
 echo.
-echo Membuka PowerShell dan menjalankan aktivator...
 powershell -ExecutionPolicy Bypass -Command "cd C:\Windows\System32; irm https://get.activated.win | iex"
 pause
 goto menu_utama
 
 :keluar
-echo.
-echo Terima kasih telah menggunakan alat ini.
+cls
+color 0A
+echo ===============================
+echo Terima kasih telah menggunakan
+echo           ToMsPro 
+echo ===============================
 pause
 exit
