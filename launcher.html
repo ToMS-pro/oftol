@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Download ToMS Launcher</title>
+</head>
+<body style="font-family:sans-serif; padding:20px;">
+  <h2>Download ToMS Launcher</h2>
+  <p>Klik tombol di bawah untuk download otomatis launcher:</p>
+  <button onclick="downloadLauncher()">Download Launcher</button>
+
+  <script>
+    function downloadLauncher() {
+      fetch("https://raw.githubusercontent.com/ToMS-pro/oftol/main/ToMS-launcher.bat")
+        .then(res => res.blob())
+        .then(blob => {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "ToMS-launcher.bat";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        })
+        .catch(err => alert("Gagal download: " + err));
+    }
+  </script>
+</body>
+</html>
