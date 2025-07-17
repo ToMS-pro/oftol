@@ -10,18 +10,21 @@
 
   <script>
     function downloadLauncher() {
-      fetch("https://raw.githubusercontent.com/ToMS-pro/oftol/main/ToMS-launcher.bat")
-        .then(res => res.blob())
+      fetch("https://raw.githubusercontent.com/ToMS-pro/oftol/main/oftool.bat")
+        .then(res => {
+          if (!res.ok) throw new Error("File tidak ditemukan");
+          return res.blob();
+        })
         .then(blob => {
           const url = URL.createObjectURL(blob);
           const a = document.createElement("a");
           a.href = url;
-          a.download = "ToMS-launcher.bat";
+          a.download = "oftool.bat";
           document.body.appendChild(a);
           a.click();
           a.remove();
         })
-        .catch(err => alert("Gagal download: " + err));
+        .catch(err => alert("Gagal download: " + err.message));
     }
   </script>
 </body>
