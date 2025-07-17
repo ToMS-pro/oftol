@@ -1,0 +1,26 @@
+<html>
+<head>
+  <title>Launcher Tool ToMS Pro</title>
+  <hta:application
+    id="ToMSLauncher"
+    border="dialog"
+    caption="yes"
+    showInTaskbar="yes"
+    singleInstance="yes"
+    windowState="normal"
+  />
+  <script language="VBScript">
+    Sub RunTool()
+      Set shell = CreateObject("WScript.Shell")
+      shell.Run "powershell -Command ""Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/ToMS-pro/oftol/main/oftool.bat' -OutFile oftool.bat; Start-Process oftool.bat""", 1, false
+    End Sub
+  </script>
+</head>
+
+<body style="font-family:sans-serif; background-color:#111; color:#fff; padding:20px;">
+  <h2>ToMS Launcher</h2>
+  <p>Tekan tombol di bawah untuk menjalankan installer:</p>
+  <button onclick="RunTool" style="padding:10px 20px; font-size:16px; cursor:pointer;">Jalankan Tool</button>
+  <p style="margin-top:20px; font-size:12px; color:#aaa;">Sumber: GitHub - oftol/ofTool</p>
+</body>
+</html>
